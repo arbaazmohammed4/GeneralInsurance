@@ -1,0 +1,55 @@
+﻿@model WebApplication3.Models.LoginInfo
+@{ ViewBag.Title = "Login"; }
+
+<h2>Login</h2>
+
+@section Head
+{
+    <style>
+        body {
+            background-image: url('../../image/login.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+}
+
+<div align="center">
+    <h2 style="color:red">@ViewBag.ErrorMessage</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-3 col-md-offset-3">
+        <div>
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+            {
+<table height="200" width="500">
+    <tr>
+        <th>LOGIN</th>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.Email)</td>
+        <td>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.Password)</td>
+        <td>
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <input type="submit" value="Login" class="btn btn-info" />
+            <a href="/Home/Reset" class="btn btn-info">Reset</a>
+            <a href="/Home/RegistrationDetails" class="btn btn-danger">New User</a>
+        </td>
+    </tr>
+</table>            }
+        </div>
+    </div>
+</div>
